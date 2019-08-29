@@ -1,5 +1,3 @@
-console.log('Client JS loaded');
-
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const messageOne = document.querySelector('#message-1');
@@ -14,7 +12,7 @@ weatherForm.addEventListener('submit', (e) => {
 
     messageOne.textContent = 'Loading...';
     messageTwo.textContent = '';
-    
+
     fetch(`/weather?address=${address}`)
         .then((response) => {
             response.json()
