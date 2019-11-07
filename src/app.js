@@ -22,14 +22,14 @@ app.use(express.static(publicFolder));
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather App',
-        name: 'Felix Gee'
+        name: 'Felix Eyetan'
     });
 });
 
 app.get('/about', (req, res) => {
     res.render('about', {
         title: 'Weather App',
-        name: 'Felix Gee'
+        name: 'Felix Eyetan'
     });
 });
 
@@ -37,7 +37,7 @@ app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
         message: 'Help message',
-        name: 'Felix Gee'
+        name: 'Felix Eyetan'
     })
 });
 
@@ -74,7 +74,7 @@ app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404 - Help Page',
         errorMessage: 'Help article not found',
-        name: ' Felix Gee'
+        name: ' Felix Eyetan'
     });
 });
 
@@ -82,7 +82,7 @@ app.get('*', (req, res) => {
     res.render('404', {
         title: '404 - Page',
         errorMessage: 'Page not found',
-        name: ' Felix Gee'
+        name: ' Felix Eyetan'
     });
 });
 
