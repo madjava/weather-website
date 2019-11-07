@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Help</title>
+    <link rel="icon" type="image/png" href="/img/weather.png" sizes="16x16">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+        {{message}} - <em><strong>Note:</strong> These projects are lean and for demonstration and technical discussions. Lots is delibertly ommited.</em>
+        <div>
+            <ul class="ul-info">
+                <li>Weather App (This project)<br>
+                <div>TechStack</div>
+                <ul>
+                    <li>Integrating with external REST services for: <ul>
+                        <li>Geolocation - Mapbox</li>
+                        <li>Weather Data - DarkSky</li>
+                    </ul> </li>
+                    <li>MongoDB running on Atlas</li>
+                    <li>HBS Template engine</li>
+                    <li>NodeJS</li>
+                </ul>
+                </li>
+                <li><a href="https://eyetanfelix-local-library.herokuapp.com" target="_blank">Local Library</a><br>
+                <div>TechStack</div>
+                <ul>
+                    <li>Mongoose</li>
+                    <li>MongoDB running on Atlas</li>
+                    <li>Pug Template engine</li>
+                    <li>NodeJS</li>
+                </ul>
+                </li>
+                <li><a href="https://felix-chat-app.herokuapp.com/">Chat App</a><br>
+                <div>TechStack</div>
+                <ul>
+                    <li>Socket.io</li>
+                    <li>NodeJS</li>
+                    <li>Frontend tools such as CSS/HTML and JavaScript</li>
+                </ul>
+                </li>
+            </ul>
+            
+        </div>
+
+    </div>
+
+    {{>footer}}
+</body>
+
+</html>

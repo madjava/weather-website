@@ -10,8 +10,16 @@
 <body>
     <div class="main-content">
         {{>header}}
-        <p>This site was created by Felix Eyetan. It uses data from Mapbox and DarkSky.net</p>
-        <img class="portrait" src="/img/myAvatar.png" alt="Avatar">
+        <div id="info-section">
+            <div id="avarta"><img class="portrait" src="/img/myAvatar.png" alt="Avatar"></div>
+            <div id="detail">
+            This app is designed Felix Eyetan and deplyed on Heroku, 
+            it uses Git for source control. 
+            The applicatoin integrates with other external REST services APIs such as Mapbox and DarkSky.net
+            <br>
+            It also plays with from frontend tech too, the usuals, CSS/HTML/JS
+            </div>
+            </div>
     </div>
 
     {{>footer}}

@@ -33,10 +33,10 @@ app.get('/about', (req, res) => {
     });
 });
 
-app.get('/help', (req, res) => {
-    res.render('help', {
-        title: 'Help',
-        message: 'Help message',
+app.get('/others', (req, res) => {
+    res.render('others', {
+        title: 'More Live Demos',
+        message: 'Some other live demos',
         name: 'Felix Eyetan'
     })
 });
