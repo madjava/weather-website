@@ -4,7 +4,6 @@ body {
     max-width: 650px;
     margin: 0 auto;
     padding: 0 16px;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -40,7 +39,7 @@ header a {
 .portrait {
     width: 150px;
     border-radius: 50%;
-border: 3px solid #333;
+    border: 3px solid #333;
 }
 
 input {
@@ -54,22 +53,27 @@ button {
     background: #888888;
     color: white;
     padding: 8px;
-
 }
+
 .ul-info li {
     margin-bottom: 10px;
 }
 
 #info-section {
     display: flex;
-flex-direction: row;
+    flex-direction: row;
 }
 
 #info-section #detail {
-align-content: last baseline;
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 3%;
-text-align: justify;
+    align-content: last baseline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3%;
+    text-align: justify;
+}
+
+.error-msg {
+    color: red;
+    font-size: 80%;
 }

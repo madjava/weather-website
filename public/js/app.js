@@ -17,8 +17,18 @@ weatherForm.addEventListener('submit', (e) => {
         .then((response) => {
             response.json()
                 .then((data) => {
-                    if (data.error) {
-                        messageOne.textContent = data.error;
+                    if (data.errors) {
+                        if (Array.isArray(data.errors)) {
+                            messageOne.textContent = '';
+                            data.errors.forEach((error) => {
+                                const el = document.createElement('div');
+                                el.innerText = error.msg;
+                                el.className = 'error-msg';
+                                messageOne.appendChild(el);
+                            });
+                        } else {
+                            messageOne.textContent = data.errors;
+                        }
                     } else {
                         messageOne.textContent = data.location;
                         messageTwo.textContent = data.forecast;

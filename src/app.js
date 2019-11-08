@@ -1,8 +1,12 @@
+const helmet = require('helmet')
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+// Using express validator for check and sanitize user inputs
+const { validationResult } = require('express-validator');
 const app = express();
 const port = process.env.PORT || 3000;
+const { validateAddress } = require('./utils/validation');
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
@@ -19,7 +23,10 @@ hbs.registerPartials(partialsPath);
 // Setup static direcctory to serve
 app.use(express.static(publicFolder));
 
-app.get('', (req, res) => {
+// Harden server using helmet
+app.use(helmet());
+
+app.get('/', (req, res) => {
     res.render('index', {
         title: 'Weather App',
         name: 'Felix Eyetan'
@@ -41,10 +48,12 @@ app.get('/others', (req, res) => {
     })
 });
 
-app.get('/weather', (req, res) => {
+// Validate user input using custom validation middleware
+app.get('/weather', validateAddress, (req, res) => {
     const address = req.query.address;
-    if (!address) {
-        return res.send({ error: 'Address must be provided' })
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.send({ errors: errors.array() })
     }
     geocode(address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
@@ -70,6 +79,9 @@ app.get('/products', (req, res) => {
     });
 });
 
+/**   
+ * Demonstating error handling for all routes and all sub routes
+ */
 app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404 - Help Page',
