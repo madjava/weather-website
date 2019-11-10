@@ -5,7 +5,6 @@ const hbs = require('hbs');
 // Using express validator for check and sanitize user inputs
 const { validationResult } = require('express-validator');
 const app = express();
-const port = process.env.PORT || 3000;
 const { validateAddress } = require('./utils/validation');
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
@@ -98,6 +97,4 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}.`);
-});
+module.exports = app;

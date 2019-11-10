@@ -2,11 +2,11 @@
   "name": "web-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js -e js,hbs",
-    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
+    "start": "node server.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon server.js -e js,hbs",
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand --verbose"
   },
   "jest": {
     "testEnvironment": "node"
