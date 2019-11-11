@@ -2,6 +2,8 @@ const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const messageOne = document.querySelector('#message-1');
 const messageTwo = document.querySelector('#message-2');
+const iconSection = document.querySelector('#icon-section');
+const skycons = new Skycons({"color":"#333333"});
 
 // messageOne.textContent = '';
 // messageTwo.textContent = '';
@@ -12,6 +14,7 @@ weatherForm.addEventListener('submit', (e) => {
 
     messageOne.textContent = 'Loading...';
     messageTwo.textContent = '';
+    iconSection.className = 'display-none';
 
     fetch(`/weather?address=${address}`)
         .then((response) => {
@@ -31,7 +34,10 @@ weatherForm.addEventListener('submit', (e) => {
                         }
                     } else {
                         messageOne.textContent = data.location;
-                        messageTwo.textContent = data.forecast;
+                        messageTwo.textContent = data.forecast.summary;
+                        iconSection.className = '';
+                        skycons.set('weather-icon', data.forecast.icon);
+                        skycons.play();
                     }
                 });
         })

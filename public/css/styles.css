@@ -77,3 +77,14 @@ button {
     color: red;
     font-size: 80%;
 }
+#weather-info{
+    display: flex;
+    flex-direction: row;
+}
+#icon-section{}
+#details-section{
+    padding: 3% 0 0 3%;
+}
+.display-none{
+    display: none;
+}

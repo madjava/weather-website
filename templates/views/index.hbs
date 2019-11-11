@@ -18,10 +18,18 @@
             <button>Search</button>
         </form>
         <p id="message-1"></p>
-        <p id="message-2"></p>
+        <div id="weather-info">
+            <div id="icon-section">
+                <canvas id="weather-icon" width="110" height="150"></canvas>
+            </div>
+            <div id="details-section">
+                <p id="message-2"></p>
+            </div>
+        </div>
     </div>
 
     {{>footer}}
+    <script src="/js/skycons.js" type="text/javascript"></script>
     <script src="/js/app.js" type="text/javascript"></script>
 </body>
 
