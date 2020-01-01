@@ -2,6 +2,8 @@ const helmet = require('helmet')
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const csrfProtection = require('@authentication/csrf-protection');
+
 // Using express validator for check and sanitize user inputs
 const { validationResult } = require('express-validator');
 const app = express();
@@ -18,6 +20,9 @@ const partialsPath = path.join(__dirname, '../templates/partials');
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
+
+// Guard against CSRF
+app.use(csrfProtection());
 
 // Setup static direcctory to serve
 app.use(express.static(publicFolder));
