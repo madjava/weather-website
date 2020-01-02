@@ -60,16 +60,10 @@ button {
 }
 
 #info-section {
-    display: flex;
-    flex-direction: row;
 }
 
 #info-section #detail {
-    align-content: last baseline;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 3%;
+    padding: 3% 0;
     text-align: justify;
 }
 

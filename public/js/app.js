@@ -18,6 +18,9 @@ weatherForm.addEventListener('submit', (e) => {
 
     fetch(`/weather?address=${address}`)
         .then((response) => {
+            if(!response.ok){
+                return messageOne.textContent = `No result for the address ${address} at this time.`;
+            }
             response.json()
                 .then((data) => {
                     if (data.errors) {
@@ -33,7 +36,7 @@ weatherForm.addEventListener('submit', (e) => {
                             messageOne.textContent = data.errors;
                         }
                     } else {
-                        messageOne.textContent = data.location;
+                        messageOne.textContent = 'Forcast: ' + data.location;
                         messageTwo.textContent = data.forecast.summary;
                         iconSection.className = '';
                         skycons.set('weather-icon', data.forecast.icon);
