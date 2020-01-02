@@ -9,11 +9,11 @@
 
 <body>
     <div class="main-content">
-        {{>header}}
-        {{errorMessage}}
+        <%- include('../partials/header', {title}) %>
+        <%= errorMessage %>
     </div>
 
-    {{>footer}}
+   <%- include('../partials/footer') %>
 </body>
 
 </html>

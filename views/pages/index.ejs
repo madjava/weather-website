@@ -10,7 +10,7 @@
 
 <body>
     <div class="main-content">
-        {{>header}}
+        <%- include('../partials/header', {title}) %>
         <p>Use this site to get your weather!</p>
 
         <form>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    {{>footer}}
+    <%- include('../partials/footer') %>
     <script src="/js/skycons.js" type="text/javascript"></script>
     <script src="/js/app.js" type="text/javascript"></script>
 </body>

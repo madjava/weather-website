@@ -9,8 +9,8 @@
 
 <body>
     <div class="main-content">
-        {{>header}}
-        {{message}} - <em><strong>Note:</strong> These projects are lean and for demonstration and technical discussions. Lots are delibertly left out.</em>
+      <%- include('../partials/header', {title}) %>
+        <%= message %> - <em><strong>Note:</strong> These projects are lean and for demonstration and technical discussions. Lots are delibertly left out.</em>
         <div>
             <ul class="ul-info">
                 <li>Weather App (This project)<br>
@@ -48,7 +48,7 @@
 
     </div>
 
-    {{>footer}}
+    <%- include('../partials/footer') %>
 </body>
 
 </html>

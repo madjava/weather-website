@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon server.js -e js,hbs",
-    "test": "env-cmd -f ./config/test.env jest --watch --runInBand --verbose"
+    "dev": "env-cmd -f ./config/dev.env nodemon server.js -e js,ejs",
+    "test": "jest --runInBand",
+    "test-watch": "jest --watch --runInBand --verbose"
   },
   "jest": {
     "testEnvironment": "node"
@@ -16,13 +17,14 @@
   "license": "ISC",
   "dependencies": {
     "@authentication/csrf-protection": "0.0.3",
+    "axios": "^0.19.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
-    "hbs": "^4.0.6",
-    "helmet": "^3.21.2",
-    "request": "^2.88.0"
+    "helmet": "^3.21.2"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.25",
     "env-cmd": "^10.0.1",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",

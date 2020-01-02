@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <title>About</title>
+    <title><%= title =></title>
     <link rel="icon" type="image/png" href="/img/weather.png" sizes="16x16">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
     <div class="main-content">
-        {{>header}}
+        <%- include('../partials/header', {title}) %>
         <div id="info-section">
             <div id="avarta"><img class="portrait" src="/img/myAvatar.png" alt="Avatar"></div>
             <div id="detail">
@@ -22,7 +22,7 @@
             </div>
     </div>
 
-    {{>footer}}
+    <%- include('../partials/footer') %>
 </body>
 
 </html>

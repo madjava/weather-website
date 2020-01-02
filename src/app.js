@@ -1,7 +1,6 @@
 const helmet = require('helmet')
 const path = require('path');
 const express = require('express');
-const hbs = require('hbs');
 const csrfProtection = require('@authentication/csrf-protection');
 
 // Using express validator for check and sanitize user inputs
@@ -9,17 +8,15 @@ const { validationResult } = require('express-validator');
 const app = express();
 const { validateAddress } = require('./utils/validation');
 const geocode = require('./utils/geocode');
-const forecast = require('./utils/forecast');
+const forecast = require('../services/forecast');
+const middleware = require('../middlewares/middleware');
 
 // Define paths for Express config
 const publicFolder = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../templates/views');
-const partialsPath = path.join(__dirname, '../templates/partials');
+const htmlHeader = middleware.htmlHeaderMiddleWare;
 
 // Setup handlebars engine and views location
-app.set('view engine', 'hbs');
-app.set('views', viewsPath);
-hbs.registerPartials(partialsPath);
+app.set('view engine', 'ejs');
 
 // Guard against CSRF
 app.use(csrfProtection());
@@ -30,23 +27,24 @@ app.use(express.static(publicFolder));
 // Harden server using helmet
 app.use(helmet());
 
-app.get('/', (req, res) => {
-    res.render('index', {
+app.get('/', htmlHeader, (req, res) => {
+    res.render('pages/index', {
         title: 'Weather App',
         name: 'Felix Eyetan'
     });
 });
 
-app.get('/about', (req, res) => {
-    res.render('about', {
+app.get('/about', htmlHeader, (req, res) => {
+    res.render('pages/about', {
         title: 'Weather App',
         name: 'Felix Eyetan'
     });
 });
 
-app.get('/others', (req, res) => {
-    res.render('others', {
-        title: 'More Live Demos',
+
+app.get('/others', htmlHeader, (req, res) => {
+    res.render('pages/others', {
+        title: 'Live Demos',
         message: 'Some other live demos',
         name: 'Felix Eyetan'
     })
@@ -67,26 +65,15 @@ app.get('/weather', validateAddress, (req, res) => {
             if (error) {
                 return res.send({ error });
             }
-            res.send({forecast, location, address});
+            res.send({ forecast, location, address });
         });
-    }); 
-});
-
-app.get('/products', (req, res) => {
-    if (!req.query.search) {
-        return res.send({
-            error: 'You must provide a search term.'
-        });
-    }
-    res.send({
-        products: []
     });
 });
 
 /**   
  * Demonstating error handling for all routes and all sub routes
  */
-app.get('/help/*', (req, res) => {
+app.get('/help/*', middleware.htmlHeaderMiddleWare, (req, res) => {
     res.render('404', {
         title: '404 - Help Page',
         errorMessage: 'Help article not found',
@@ -94,12 +81,21 @@ app.get('/help/*', (req, res) => {
     });
 });
 
-app.get('*', (req, res) => {
-    res.render('404', {
+// Custom 404 page rendering
+app.use((req, res) => {
+    res.render('pages/404', {
         title: '404 - Page',
-        errorMessage: 'Page not found',
-        name: ' Felix Eyetan'
+        errorMessage: 'Sorry! Page Not Found.'
     });
 });
+
+// General 500 error handling
+app.use((err, req, res, next) => {
+    res.sendStatus(500);
+
+    // log error to console or file with Morgan etc. for futher debugging.
+    console.log(err);
+});
+
 
 module.exports = app;
