@@ -1,0 +1,58 @@
+{
+    "type": "FeatureCollection",
+    "query": [
+        "london"
+    ],
+    "features": [
+        {
+            "id": "place.2703042976503000",
+            "type": "Feature",
+            "place_type": [
+                "place"
+            ],
+            "relevance": 1,
+            "properties": {
+                "wikidata": "Q84"
+            },
+            "text": "London",
+            "place_name": "London, Greater London, England, United Kingdom",
+            "bbox": [
+                -0.35167,
+                51.384598,
+                0.152641,
+                51.669993
+            ],
+            "center": [
+                -0.1275,
+                51.50722
+            ],
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.1275,
+                    51.50722
+                ]
+            },
+            "context": [
+                {
+                    "id": "district.9655698107976620",
+                    "wikidata": "Q23306",
+                    "text": "Greater London"
+                },
+                {
+                    "id": "region.10000087231453920",
+                    "short_code": "GB-ENG",
+                    "wikidata": "Q21",
+                    "text": "England"
+                },
+                {
+                    "id": "country.8605848117814600",
+                    "short_code": "gb",
+                    "wikidata": "Q145",
+                    "text": "United Kingdom"
+                }
+            ]
+        }
+    ],
+    "attribution": "NOTICE: © 2019 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

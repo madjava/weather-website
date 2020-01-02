@@ -7,7 +7,7 @@ const csrfProtection = require('@authentication/csrf-protection');
 const { validationResult } = require('express-validator');
 const app = express();
 const { validateAddress } = require('./utils/validation');
-const geocode = require('./utils/geocode');
+const geocode = require('../services/geocode');
 const forecast = require('../services/forecast');
 const middleware = require('../middlewares/middleware');
 

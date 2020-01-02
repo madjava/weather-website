@@ -9,7 +9,7 @@ const LocationError = require('../errors/location.error');
 describe('forecast', () => {
     const lat = 51.50722;
     const lng = -0.1275;
-    
+
     beforeEach(() => {
         axios
             .get
@@ -34,6 +34,6 @@ describe('forecast', () => {
             await forecast(lat, lng);
         } catch (error) {
             expect(error instanceof LocationError).toBe(true);
-        }
+        } 
     });
 });

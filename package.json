@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "env-cmd -f ./config/dev.env nodemon server.js -e js,ejs",
     "test": "jest --runInBand",
-    "test-watch": "jest --watch --runInBand --verbose"
+    "test-watch": "jest --watch --runInBand --verbose --bail"
   },
   "jest": {
     "testEnvironment": "node"
