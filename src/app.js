@@ -7,9 +7,9 @@ const csrfProtection = require('@authentication/csrf-protection');
 const { validationResult } = require('express-validator');
 const app = express();
 const { validateAddress } = require('./utils/validation');
-const geocode = require('../services/geocode');
-const forecast = require('../services/forecast');
+const weather = require('../services/weather.service');
 const middleware = require('../middlewares/middleware');
+const ErrorMiddleWare = require('../middlewares/error.middleware');
 
 // Define paths for Express config
 const publicFolder = path.join(__dirname, '../public');
@@ -51,23 +51,20 @@ app.get('/others', htmlHeader, (req, res) => {
 });
 
 // Validate user input using custom validation middleware
-app.get('/weather', validateAddress, (req, res) => {
+app.get('/weather', validateAddress, async (req, res, next) => {
     const address = req.query.address;
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
         return res.send({ errors: errors.array() })
     }
-    geocode(address, (error, { latitude, longitude, location } = {}) => {
-        if (error) {
-            return res.send({ error });
-        }
-        forecast(latitude, longitude, (error, forecast) => {
-            if (error) {
-                return res.send({ error });
-            }
-            res.send({ forecast, location, address });
-        });
-    });
+    try {
+        const response = await weather(address);
+        return res.json(response);
+    } catch (error) {
+        next(error);
+    }
+
 });
 
 /**   
@@ -89,13 +86,8 @@ app.use((req, res) => {
     });
 });
 
-// General 500 error handling
-app.use((err, req, res, next) => {
-    res.sendStatus(500);
-
-    // log error to console or file with Morgan etc. for futher debugging.
-    console.log(err);
-});
+// Handles various errors, leaving the app module less cluterred
+ErrorMiddleWare(app);
 
 
 module.exports = app;

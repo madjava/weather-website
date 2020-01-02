@@ -2,8 +2,12 @@ const axios = require('axios');
 const DARKSKY_TOKEN = process.env.DARKSKY_TOKEN;
 const LocationError = require('../errors/location.error');
 
-const forecast = async (lat, lng) => {
-    const url = `https://api.darksky.net/forecast/${DARKSKY_TOKEN}/${lat},${lng}?units=si`;
+const forecast = async ({ latitude, longitude }) => {
+    if (!latitude || !longitude) {
+        throw new LocationError('Unable to find location. Incomplete coordinates provided.');
+    }
+    
+    const url = `https://api.darksky.net/forecast/${DARKSKY_TOKEN}/${latitude},${longitude}?units=si`;
 
     const { data } = await axios.get(url);
     if (data.error) {

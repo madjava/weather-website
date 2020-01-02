@@ -1,5 +1,8 @@
 const request = require('supertest');
 const app = require('../src/app');
+const weatherdata = require('./fixtures/weather.json');
+const weather = require('../services/weather.service');
+jest.mock('../services/weather.service');
 
 describe('app', () => {
     test('GET: / should reach index route', () => {
@@ -16,10 +19,13 @@ describe('app', () => {
             .expect(200);
     });
 
-    test.skip('GET: /weather should return a valid response', () => {
+    test('GET: /weather should return a valid response', () => {
+        weather.mockImplementationOnce(() => {
+            return weatherdata;
+        });
         return request(app)
             .get('/weather')
-            .query({ address: ' address' })
+            .query({ address: 'address' })
             .expect('Content-Type', /json/)
             .expect(200);
     });
